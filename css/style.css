@@ -259,9 +259,9 @@ fieldset img:hover {
   width: 220px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2px;
-  gap: 5px;
+  justify-content: space-evenly;
+
+  gap: 10px;
   background-color: rgba(165, 87, 42, 0.904);
 }
 

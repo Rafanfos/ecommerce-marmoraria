@@ -244,15 +244,16 @@ const listaCompras = document.querySelector(".listaCompras");
 const total = document.querySelector(".total");
 const vazio = document.querySelector(".vazio");
 let soma = 0;
+let cont = 0;
 
 vitrine.addEventListener("click", adcionarCarrinho);
 
 function adcionarCarrinho(event) {
   vazio.innerHTML = "";
-
   let addCar = event.target;
 
   if (addCar.tagName == "H3") {
+    cont++;
     total.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
       let produtoAtual = data[i];
@@ -281,11 +282,16 @@ function adcionarCarrinho(event) {
     let totalCarrinho = document.createElement("li");
     let totalTitulo = document.createElement("h3");
     let totalValor = document.createElement("span");
-
+    let qtdCarrinho = document.createElement("li");
+    let qtdTitulo = document.createElement("h3");
+    let qtdValor = document.createElement("span");
     totalTitulo.innerText = "Total";
     totalValor.innerText = somaTotal;
+    qtdTitulo.innerText = "Quantidade";
+    qtdValor.innerText = cont;
 
-    total.append(totalCarrinho);
+    total.append(qtdCarrinho, totalCarrinho);
+    qtdCarrinho.append(qtdTitulo, qtdValor);
     totalCarrinho.append(totalTitulo, totalValor);
   }
 }
@@ -294,9 +300,11 @@ listaCompras.addEventListener("click", removerProduto);
 
 function removerProduto(event) {
   total.innerHTML = "";
+
   let remCar = event.target;
 
   if (remCar.tagName == "H5") {
+    cont--;
     let num = remCar.classList[0].slice(3);
     let classe = "produto" + num;
     let produto = document.getElementsByClassName(classe);
@@ -316,11 +324,16 @@ function removerProduto(event) {
   let totalCarrinho = document.createElement("li");
   let totalTitulo = document.createElement("h3");
   let totalValor = document.createElement("span");
-
+  let qtdCarrinho = document.createElement("li");
+  let qtdTitulo = document.createElement("h3");
+  let qtdValor = document.createElement("span");
   totalTitulo.innerText = "Total";
   totalValor.innerText = somaTotal;
+  qtdTitulo.innerText = "Quantidade";
+  qtdValor.innerText = cont;
 
-  total.append(totalCarrinho);
+  total.append(qtdCarrinho, totalCarrinho);
+  qtdCarrinho.append(qtdTitulo, qtdValor);
   totalCarrinho.append(totalTitulo, totalValor);
 
   arrumarCarrinho();
@@ -333,6 +346,7 @@ function arrumarCarrinho() {
       `<h4>Carrinho vazio</h4>
        <span>Adcione itens</span>`
     );
+    total.innerHTML = "";
   }
 }
 
