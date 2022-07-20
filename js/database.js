@@ -212,7 +212,7 @@ const data = [
     img: "./img/outros/ardosia-verde.jpg",
     nome: "Ardósia Verde",
     descricao:
-      "Bonita e discreta. Usada tanto em amSbientes internos quanto externos",
+      "Bonita e discreta. Usada tanto em ambientes internos quanto externos.",
     preco: 44,
     textoBotao: "Adicionar ao carrinho",
     tag: "Outros",
@@ -222,7 +222,7 @@ const data = [
     img: "./img/outros/ardosia-preta.jpg",
     nome: "Ardósia Preta",
     descricao:
-      "Tons escuros, conferem um ar moderno e luxuoso. Ideal para pisos, e revestimentos internos.",
+      "Tons escuros, conferem um ar luxuoso. Ideal para pisos, e revestimentos internos.",
     preco: 130,
     textoBotao: "Adicionar ao carrinho",
     tag: "Outros",
