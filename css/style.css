@@ -260,7 +260,6 @@ fieldset img:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
   gap: 10px;
   background-color: rgba(165, 87, 42, 0.904);
 }
@@ -280,4 +279,10 @@ fieldset img:hover {
   color: white;
   font-size: 12px;
   font-weight: bold;
+}
+
+.negrito {
+  font-weight: bold;
+  color: black;
+  font-family: "Rubik Moonrocks", cursive;
 }

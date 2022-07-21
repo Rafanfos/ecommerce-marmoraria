@@ -1,8 +1,12 @@
 const vitrine = document.querySelector(".vitrine");
+const home = document.querySelector(".home");
+const tudo = document.querySelector(".tudo");
+const marmores = document.querySelector(".marmores");
+const granitos = document.querySelector(".granitos");
+const outros = document.querySelector(".outros");
+
 listarProdutos(data);
 criandoTags(data);
-
-const home = document.querySelector(".home");
 
 home.addEventListener("click", function () {
   vitrine.innerHTML = "";
@@ -11,6 +15,11 @@ home.addEventListener("click", function () {
 });
 
 function listarProdutos(arr) {
+  tudo.classList.remove("negrito");
+  marmores.classList.remove("negrito");
+  granitos.classList.remove("negrito");
+  outros.classList.remove("negrito");
+
   const listaProdutos = document.createElement("ul");
   listaProdutos.classList.add("listaProdutos");
   vitrine.append(listaProdutos);
@@ -56,8 +65,6 @@ function listarProdutos(arr) {
   }
 }
 
-const tudo = document.querySelector(".tudo");
-
 tudo.addEventListener("click", function () {
   vitrine.innerHTML = "";
 
@@ -65,6 +72,11 @@ tudo.addEventListener("click", function () {
 });
 
 function listarTudo(arr) {
+  tudo.classList.add("negrito");
+  marmores.classList.remove("negrito");
+  granitos.classList.remove("negrito");
+  outros.classList.remove("negrito");
+
   const listaProdutos = document.createElement("ul");
   listaProdutos.classList.add("listaProdutos");
   vitrine.append(listaProdutos);
@@ -95,8 +107,6 @@ function listarTudo(arr) {
   }
 }
 
-const marmores = document.querySelector(".marmores");
-
 marmores.addEventListener("click", function () {
   vitrine.innerHTML = "";
 
@@ -104,6 +114,11 @@ marmores.addEventListener("click", function () {
 });
 
 function listarMarmores(arr) {
+  tudo.classList.remove("negrito");
+  marmores.classList.add("negrito");
+  granitos.classList.remove("negrito");
+  outros.classList.remove("negrito");
+
   const listaProdutos = document.createElement("ul");
   listaProdutos.classList.add("listaProdutos");
   vitrine.append(listaProdutos);
@@ -144,8 +159,6 @@ function listarMarmores(arr) {
   }
 }
 
-const granitos = document.querySelector(".granitos");
-
 granitos.addEventListener("click", function () {
   vitrine.innerHTML = "";
 
@@ -153,6 +166,11 @@ granitos.addEventListener("click", function () {
 });
 
 function listarGranitos(arr) {
+  tudo.classList.remove("negrito");
+  marmores.classList.remove("negrito");
+  granitos.classList.add("negrito");
+  outros.classList.remove("negrito");
+
   const listaProdutos = document.createElement("ul");
   listaProdutos.classList.add("listaProdutos");
   vitrine.append(listaProdutos);
@@ -192,8 +210,6 @@ function listarGranitos(arr) {
   }
 }
 
-const outros = document.querySelector(".outros");
-
 outros.addEventListener("click", function () {
   vitrine.innerHTML = "";
 
@@ -201,6 +217,11 @@ outros.addEventListener("click", function () {
 });
 
 function listarOutros(arr) {
+  tudo.classList.remove("negrito");
+  marmores.classList.remove("negrito");
+  granitos.classList.remove("negrito");
+  outros.classList.add("negrito");
+
   const listaProdutos = document.createElement("ul");
   listaProdutos.classList.add("listaProdutos");
   vitrine.append(listaProdutos);
