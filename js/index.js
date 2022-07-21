@@ -270,12 +270,12 @@ let cont = 0;
 vitrine.addEventListener("click", adcionarCarrinho);
 
 function adcionarCarrinho(event) {
-  vazio.innerHTML = "";
   let addCar = event.target;
 
-  if (addCar.tagName == "H3") {
-    cont++;
+  if (addCar.tagName === "H3") {
+    vazio.innerHTML = "";
     total.innerHTML = "";
+    cont++;
     for (let i = 0; i < data.length; i++) {
       let produtoAtual = data[i];
       if (produtoAtual.id == addCar.id) {
