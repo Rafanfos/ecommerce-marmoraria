@@ -20,6 +20,14 @@ const initializeDOMElements = () => {
   };
 };
 
+const initializeGlobalVariables = () => {
+  let globalProducts = [];
+
+  return {
+    globalProducts,
+  };
+};
+
 export const {
   marketplaceTag,
   homeTag,
@@ -29,6 +37,8 @@ export const {
   othersTag,
   productsListTag,
 } = initializeDOMElements();
+
+export let { globalProducts } = initializeGlobalVariables();
 
 const setupStaticHTML = () => {
   marketplaceTag.innerHTML = "";
@@ -68,6 +78,7 @@ const handleProducts = () => {
     .then((response) => {
       const productsData = response.data.data;
       createProductsHTML(productsData);
+      globalProducts = [...productsData];
     })
     .catch((error) => {
       console.error("Erro ao obter produtos:", error);
@@ -76,7 +87,7 @@ const handleProducts = () => {
 
 const createProductsHTML = (productsData) => {
   productsListTag.innerHTML = "";
-  console.log(productsData);
+
   productsData.forEach((currentProduct) => {
     if (currentProduct.price <= 300) {
       const itemList = document.createElement("li");
