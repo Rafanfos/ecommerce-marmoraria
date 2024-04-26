@@ -199,6 +199,10 @@ fieldset img:hover {
   color: gray;
 }
 
+.no-empty {
+  display: none;
+}
+
 .shop-list {
   display: flex;
   flex-direction: column;
@@ -253,6 +257,18 @@ fieldset img:hover {
 
 .shop-list h5:hover {
   cursor: pointer;
+}
+
+.shop-list {
+  li {
+    display: flex;
+    justify-content: space-between;
+
+    .material-symbols-outlined {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
 }
 
 .total {

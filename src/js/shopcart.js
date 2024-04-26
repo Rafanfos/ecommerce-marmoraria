@@ -1,63 +1,71 @@
-import { marketplaceTag } from "./content.js";
+import { marketplaceHtml } from "./content.js";
 import { globalProducts } from "./content.js";
 
 const initializeDOMElements = () => {
-  const shopList = document.querySelector(".shop-list");
-  const total = document.querySelector(".total");
-  const empty = document.querySelector(".empty");
+  const shopListHtml = document.querySelector(".shop-list");
+  const totalHtml = document.querySelector(".total");
+  const emptyBlockHtml = document.querySelector(".empty");
+  const noEmptyBlockHtml = document.querySelector(".no-empty");
 
   return {
-    shopList,
-    total,
-    empty,
+    shopListHtml,
+    totalHtml,
+    emptyBlockHtml,
+    noEmptyBlockHtml,
   };
 };
 
 const initializeGlobalVariables = () => {
   let sum = 0;
   let count = 0;
+  let isInitial = true;
 
   return {
     sum,
     count,
+    isInitial,
   };
 };
 
-const { shopList, total, empty } = initializeDOMElements();
-let { sum, count } = initializeGlobalVariables();
+const { shopListHtml, totalHtml, emptyBlockHtml, noEmptyBlockHtml } =
+  initializeDOMElements();
+let { sum, count, isInitial } = initializeGlobalVariables();
 
 const addToCart = (event) => {
-  let addCart = event.target;
+  const addCartHtml = event.target;
 
-  if (addCart.tagName === "H3") {
-    empty.innerHTML = "";
-    total.innerHTML = "";
+  if (addCartHtml.tagName === "H3") {
     count++;
 
+    if (count > 0) {
+      toggleEmptyNoEmpty(noEmptyBlockHtml, emptyBlockHtml);
+    }
+
     globalProducts.forEach((prodItem) => {
-      if (prodItem._id === addCart.id) {
+      if (prodItem._id === addCartHtml.id) {
         sum += prodItem.price;
 
-        let cartItem = document.createElement("li");
-        let image = document.createElement("img");
-        let product = document.createElement("h4");
-        let price = document.createElement("span");
-        let trash = document.createElement("h5");
+        const cartItemHtml = document.createElement("li");
+        const imageHtml = document.createElement("img");
+        const productHtml = document.createElement("h4");
+        const priceHtml = document.createElement("span");
+        const trashHtml = document.createElement("i");
 
-        image.src = prodItem.path;
-        cartItem.classList.add("product" + prodItem.id);
-        trash.classList.add("rem" + prodItem.id);
-        product.innerText = prodItem.name;
-        price.innerText =
+        imageHtml.src = prodItem.path;
+        cartItemHtml.id = prodItem._id;
+        trashHtml.id = prodItem._id;
+        productHtml.innerText = prodItem.name;
+        priceHtml.innerText =
           "R$ " + prodItem.price.toFixed(2).replace(".", ",") + "/m²";
-        trash.innerText = "Remover";
+        trashHtml.classList.add("material-symbols-outlined");
+        trashHtml.innerText = "delete";
 
-        shopList.append(cartItem);
-        cartItem.append(image, product, price, trash);
+        shopListHtml.append(cartItemHtml);
+        cartItemHtml.append(imageHtml, productHtml, priceHtml, trashHtml);
       }
     });
 
-    if (count === 1) {
+    if (isInitial) {
       return createCartWithProducts();
     }
 
@@ -66,74 +74,77 @@ const addToCart = (event) => {
 };
 
 const createCartWithProducts = () => {
-  let cartTotal = document.createElement("li");
-  let totalTitle = document.createElement("h3");
-  let totalValue = document.createElement("span");
-  let cartQtd = document.createElement("li");
-  let qtdTitle = document.createElement("h3");
-  let qtdValue = document.createElement("span");
+  const cartTotalHtml = document.createElement("li");
+  const totalTitleHtml = document.createElement("h3");
+  const totalValueHtml = document.createElement("span");
+  const cartQtdHtml = document.createElement("li");
+  const qtdTitleHtml = document.createElement("h3");
+  const qtdValueHtml = document.createElement("span");
 
-  totalValue.classList.add("total-value");
-  qtdValue.classList.add("qtd-value");
+  totalValueHtml.classList.add("total-value");
+  qtdValueHtml.classList.add("qtd-value");
 
-  totalTitle.innerText = "Total";
-  qtdTitle.innerText = "Quantidade";
+  totalTitleHtml.innerText = "Total";
+  qtdTitleHtml.innerText = "Quantidade";
 
-  cartTotal.append(totalTitle, totalValue);
-  cartQtd.append(qtdTitle, qtdValue);
-  total.append(cartTotal, cartQtd);
+  cartTotalHtml.append(totalTitleHtml, totalValueHtml);
+  cartQtdHtml.append(qtdTitleHtml, qtdValueHtml);
+  totalHtml.append(cartTotalHtml, cartQtdHtml);
 
   updateKart();
+
+  isInitial = false;
 };
 
 const updateKart = () => {
   const sumTotal = "R$ " + sum.toFixed(2).replace(".", ",");
-  const totalValue = document.querySelector(".total-value");
-  const qtdValue = document.querySelector(".qtd-value");
+  const totalValueHtml = document.querySelector(".total-value");
+  const qtdValueHtml = document.querySelector(".qtd-value");
 
-  totalValue.innerText = sumTotal;
+  totalValueHtml.innerText = sumTotal;
 
-  qtdValue.innerText = count;
+  qtdValueHtml.innerText = count;
 };
 
-marketplaceTag.addEventListener("click", addToCart);
+marketplaceHtml.addEventListener("click", addToCart);
 
-function removeProduct(event) {
-  total.innerHTML = "";
+const removeProduct = (event) => {
+  const remCartHtml = event.target;
 
-  let removeCart = event.target;
-
-  if (remCar.tagName == "H5") {
+  if (remCartHtml.tagName.toLowerCase() == "i") {
     count--;
-    const num = remCar.classList[0].slice(3);
-    const className = "product" + num;
-    const product = document.getElementsByClassName(className);
-    shopList.removeChild(product[0]);
+    const productToDelete = remCartHtml.closest("li");
+    shopListHtml.removeChild(productToDelete);
 
     globalProducts.forEach((product) => {
-      if (product._id === Number(num)) {
+      if (product._id === remCartHtml.id) {
         sum -= product.price;
       }
     });
   }
 
   if (count === 0) {
-    return createEmptyCart();
+    toggleEmptyNoEmpty(emptyBlockHtml, noEmptyBlockHtml);
   }
 
   updateKart();
-}
-
-const createEmptyCart = () => {
-  empty.insertAdjacentHTML(
-    "afterbegin",
-    `<h4>Carrinho vazio</h4>
-       <span>Adcione itens</span>`
-  );
-  total.innerHTML = "";
 };
 
-shopList.addEventListener("click", addToCart);
+// const createEmptyCart = () => {
+//   emptyBlockHtml.style.display = "flex";
+//   emptyBlockHtml.style.flexDirection = "column";
+
+//   document.querySelector(".no-empty").style.display = "none";
+// };
+
+shopListHtml.addEventListener("click", removeProduct);
+
+const toggleEmptyNoEmpty = (toShow, toHide) => {
+  toShow.style.display = "flex";
+  toShow.style.flexDirection = "column";
+
+  toHide.style.display = "none";
+};
 
 // const botaoBusca = document.querySelector(".lupa");
 // const palavraBusca = document.querySelector(".inputBusca");
@@ -157,7 +168,7 @@ shopList.addEventListener("click", addToCart);
 //   for (let i = 0; i < data.length; i++) {
 //     product = arr[i];
 
-//     if (product.tags.includes(buscada)) {
+//     if (product.Htmls.includes(buscada)) {
 //       resultadoBusca = true;
 //       let itemList = document.createElement("li");
 //       let figure = document.createElement("figure");
@@ -170,7 +181,7 @@ shopList.addEventListener("click", addToCart);
 
 //       image.src = product.img;
 //       addCarrinho.id = product.id;
-//       category.innerText = product.tag;
+//       category.innerText = product.Html;
 //       product.innerText = product.nome;
 //       description.innerText = product.description;
 //       price.innerText =

@@ -1,22 +1,22 @@
 import { getProducts } from "./axios.js";
 
 const initializeDOMElements = () => {
-  const marketplaceTag = document.querySelector(".marketplace");
-  const homeTag = document.querySelector(".home");
-  const allTag = document.querySelector(".all");
-  const marblesTag = document.querySelector(".marbles");
-  const granitesTag = document.querySelector(".granites");
-  const othersTag = document.querySelector(".others");
-  const productsListTag = document.createElement("ul");
+  const marketplaceHtml = document.querySelector(".marketplace");
+  const homeHtml = document.querySelector(".home");
+  const allHtml = document.querySelector(".all");
+  const marblesHtml = document.querySelector(".marbles");
+  const granitesHtml = document.querySelector(".granites");
+  const othersHtml = document.querySelector(".others");
+  const productsListHtml = document.createElement("ul");
 
   return {
-    marketplaceTag,
-    homeTag,
-    allTag,
-    marblesTag,
-    granitesTag,
-    othersTag,
-    productsListTag,
+    marketplaceHtml,
+    homeHtml,
+    allHtml,
+    marblesHtml,
+    granitesHtml,
+    othersHtml,
+    productsListHtml,
   };
 };
 
@@ -29,22 +29,22 @@ const initializeGlobalVariables = () => {
 };
 
 export const {
-  marketplaceTag,
-  homeTag,
-  allTag,
-  marblesTag,
-  granitesTag,
-  othersTag,
-  productsListTag,
+  marketplaceHtml,
+  homeHtml,
+  allHtml,
+  marblesHtml,
+  granitesHtml,
+  othersHtml,
+  productsListHtml,
 } = initializeDOMElements();
 
 export let { globalProducts } = initializeGlobalVariables();
 
 const setupStaticHTML = () => {
-  marketplaceTag.innerHTML = "";
-  productsListTag.classList.add("productsList");
-  marketplaceTag.append(productsListTag);
-  marketplaceTag.insertAdjacentHTML(
+  marketplaceHtml.innerHTML = "";
+  productsListHtml.classList.add("productsList");
+  marketplaceHtml.append(productsListHtml);
+  marketplaceHtml.insertAdjacentHTML(
     "afterbegin",
     "<h1>Os melhores preços você só encontra aqui!!</h1>"
   );
@@ -53,19 +53,19 @@ const setupStaticHTML = () => {
 };
 
 const setDinamicHTML = (type) => {
-  const categoryTags = [allTag, marblesTag, granitesTag, othersTag];
-  categoryTags.forEach((tag) => tag.classList.remove("bold"));
+  const categoryHtmls = [allHtml, marblesHtml, granitesHtml, othersHtml];
+  categoryHtmls.forEach((Html) => Html.classList.remove("bold"));
 
   if (type === "initial") {
-    allTag.classList.add("bold");
+    allHtml.classList.add("bold");
   } else {
-    eval(type + "Tag.classList.add('bold')");
+    eval(type + "Html.classList.add('bold')");
   }
 
-  productsListTag.classList.add("productsList");
-  marketplaceTag.innerHTML = "";
-  marketplaceTag.append(productsListTag);
-  marketplaceTag.insertAdjacentHTML(
+  productsListHtml.classList.add("productsList");
+  marketplaceHtml.innerHTML = "";
+  marketplaceHtml.append(productsListHtml);
+  marketplaceHtml.insertAdjacentHTML(
     "afterbegin",
     "<h1>Os melhores preços você só encontra aqui!!</h1>"
   );
@@ -86,41 +86,49 @@ const handleProducts = () => {
 };
 
 const createProductsHTML = (productsData) => {
-  productsListTag.innerHTML = "";
+  productsListHtml.innerHTML = "";
 
   productsData.forEach((currentProduct) => {
     if (currentProduct.price <= 300) {
-      const itemList = document.createElement("li");
-      const figure = document.createElement("figure");
-      const image = document.createElement("img");
-      const category = document.createElement("h4");
-      const product = document.createElement("h2");
-      const description = document.createElement("p");
-      const price = document.createElement("span");
-      const addToCart = document.createElement("h3");
+      const itemListHtml = document.createElement("li");
+      const figureHtml = document.createElement("figure");
+      const imageHtml = document.createElement("img");
+      const categoryHtml = document.createElement("h4");
+      const productHtml = document.createElement("h2");
+      const descriptionHtml = document.createElement("p");
+      const priceHtml = document.createElement("span");
+      const addToCartHtml = document.createElement("h3");
 
-      image.src = currentProduct.path;
-      addToCart.id = currentProduct._id;
-      category.innerText = currentProduct.category;
-      product.innerText = currentProduct.name;
-      description.innerText = currentProduct.description;
-      price.innerText =
+      itemListHtml.id = currentProduct._id;
+      imageHtml.src = currentProduct.path;
+      addToCartHtml.id = currentProduct._id;
+      categoryHtml.innerText = currentProduct.category;
+      productHtml.innerText = currentProduct.name;
+      descriptionHtml.innerText = currentProduct.description;
+      priceHtml.innerText =
         "R$ " + currentProduct.price.toFixed(2).replace(".", ",") + "/m²";
-      addToCart.innerText = "Adicionar no carrinho";
+      addToCartHtml.innerText = "Adicionar no carrinho";
 
-      productsListTag.append(itemList);
-      itemList.append(figure, category, product, description, price, addToCart);
-      figure.append(image);
+      productsListHtml.append(itemListHtml);
+      itemListHtml.append(
+        figureHtml,
+        categoryHtml,
+        productHtml,
+        descriptionHtml,
+        priceHtml,
+        addToCartHtml
+      );
+      figureHtml.append(imageHtml);
     }
   });
 };
 
-// Event listeners for category tags
-homeTag.addEventListener("click", () => setHTMLStructure("initial"));
-allTag.addEventListener("click", () => setHTMLStructure("all"));
-marblesTag.addEventListener("click", () => setHTMLStructure("marbles"));
-granitesTag.addEventListener("click", () => setHTMLStructure("granites"));
-othersTag.addEventListener("click", () => setHTMLStructure("others"));
+// Event listeners for category Htmls
+homeHtml.addEventListener("click", () => setHTMLStructure("initial"));
+allHtml.addEventListener("click", () => setHTMLStructure("all"));
+marblesHtml.addEventListener("click", () => setHTMLStructure("marbles"));
+granitesHtml.addEventListener("click", () => setHTMLStructure("granites"));
+othersHtml.addEventListener("click", () => setHTMLStructure("others"));
 
 // Initial setup
 setupStaticHTML("initial");
@@ -132,7 +140,7 @@ setupStaticHTML("initial");
 
 //   let remCar = event.target;
 
-//   if (remCar.tagName == "H5") {
+//   if (remCar.HtmlName == "H5") {
 //     cont--;
 //     let num = remCar.classList[0].slice(3);
 //     let classe = "product" + num;
@@ -179,7 +187,7 @@ setupStaticHTML("initial");
 //   }
 // }
 
-// function criandoTags(arr) {
+// function criandoHtmls(arr) {
 //   for (let i = 0; i < arr.length; i++) {
 //     let productAtual = arr[i];
 //     let nome = productAtual.nome
@@ -198,10 +206,10 @@ setupStaticHTML("initial");
 
 //     palavrasChave.push(
 //       "pedra",
-//       productAtual.tag.toLowerCase().replace("á", "a")
+//       productAtual.Html.toLowerCase().replace("á", "a")
 //     );
 
-//     productAtual.tags = palavrasChave;
+//     productAtual.Htmls = palavrasChave;
 //   }
 // }
 
@@ -227,7 +235,7 @@ setupStaticHTML("initial");
 //   for (let i = 0; i < data.length; i++) {
 //     productAtual = arr[i];
 
-//     if (productAtual.tags.includes(buscada)) {
+//     if (productAtual.Htmls.includes(buscada)) {
 //       resultadoBusca = true;
 //       let itemList = document.createElement("li");
 //       let figure = document.createElement("figure");
@@ -240,7 +248,7 @@ setupStaticHTML("initial");
 
 //       image.src = productAtual.img;
 //       addCarrinho.id = productAtual.id;
-//       category.innerText = productAtual.tag;
+//       category.innerText = productAtual.Html;
 //       product.innerText = productAtual.nome;
 //       description.innerText = productAtual.description;
 //       price.innerText =
