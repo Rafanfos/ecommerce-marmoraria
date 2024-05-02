@@ -4,93 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <script defer src="./js/database.js"></script>
-    <script defer src="./js/index.js"></script>
+    <link rel="stylesheet" href="./src/css/reset.css" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="module" defer src="./src/js/axios.js"></script>
+    <script type="module" defer src="./src/js/content.js"></script>
+    <script type="module" defer src="./src/js/shopcart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>MarbleRocks</title>
   </head>
   <body>
-    <header class="cabecalho">
+    <header class="header">
       <h2 class="home">MarbleRocks</h2>
-      <nav class="categorias">
-        <h3 class="tudo">Todos</h3>
-        <h3 class="marmores">Mármores</h3>
-        <h3 class="granitos">Granitos</h3>
-        <h3 class="outros">Outros</h3>
+      <nav class="categories">
+        <h3 class="all">Todos</h3>
+        <h3 class="marbles">Mármores</h3>
+        <h3 class="granites">Granitos</h3>
+        <h3 class="others">Outros</h3>
       </nav>
     </header>
-    <main class="principal">
-      <section class="vitrine">
-        <!-- <ul class="listaProdutos">
-          <li>
-            <figure>
-              <img src="./img/mármores/marmore-begebahia.jpg" />
-            </figure>
-            <h4>Mármores</h4>
-            <h2>Mármore Bege Bahia</h2>
-            <p>Um tom claro porém com tons terrosos, ideal para pias e mesas</p>
-            <span>R$ 250,00</span>
-            <h3>Adcionar no carrinho</h3>
-          </li>
-          <li>
-            <figure>
-              <img src="./img/mármores/marmore-brancoparana.jpg" />
-            </figure>
-            <h4>Mármores</h4>
-            <h2>Mármore Branco Paraná</h2>
-            <p>
-              Branco com leves detalhes marrons ideal para cozinhas e banheiros.
-            </p>
-            <span>R$ 300,00</span>
-            <h3>Adcionar no carrinho</h3>
-          </li>
-          <li>
-            <figure>
-              <img src="./img/granito/granito-azulestelar.jpg" />
-            </figure>
-            <h4>Granitos</h4>
-            <h2>Granito Azul Estelar</h2>
-            <p>
-              Diferente, porém dispojado, chama atenção em qualquer acabamento,
-              ideal para pias.
-            </p>
-            <span>R$ 900,00</span>
-            <h3>Adcionar no carrinho</h3>
-          </li>
-        </ul> -->
+    <main class="main">
+      <section class="marketplace">
+    
       </section>
       <aside class="lateral">
         <fieldset>
           <input class="inputBusca" placeholder ="Digite aqui sua pesquisa"></input>
-          <img src="./img/lupa.png" class="lupa">
+          <img src="./src/assets/images/lupa.png" class="search">
         </fieldset>
-        <section class="carrinho">
+        <section class="shop-cart">
           <h3>Carrinho de compras</h3>
-          <div class="vazio">
+          <div class="empty">
             <h4>Carrinho vazio</h4>
             <span>Adcione itens</span>
           </div>
-            <ul class="listaCompras">
-               <!-- <li>
-                <h4>Granito Azul Estelar</h4>
-                <figure>
-                  <img src="./img/granito/granito-azulestelar.jpg" />
-                </figure>
-                <span>R$ 900,00</span>
-                <h5>REMOVER</h5>
-              </li>-->
+          <div class="no-empty">
+            <ul class="shop-list">
+            
              </ul>
           <ul class="total"> 
-            <!-- <li>
-              <h3>Quantidade</h3>
-              <span>1</span>
-            </li>
-            <li>
-              <h3>Total</h3>
-              <span>R$ 900,00</span>
-            </li> -->
+
+          </div>
+           
           </ul>
         </section>
       </aside>

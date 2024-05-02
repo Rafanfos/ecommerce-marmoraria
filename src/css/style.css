@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@700&family=Rubik+Moonrocks&display=swap");
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+header {
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 0px 4px 20px -10px rgba(0, 0, 0, 0.25);
+}
+
+header h2 {
+  margin-left: 80px;
+  font-family: "Rubik Moonrocks", cursive;
+  color: rgba(165, 87, 42, 0.904);
+  font-size: 24px;
+}
+
+header h2:hover {
+  cursor: pointer;
+}
+
+.categories {
+  color: rgb(165, 87, 42);
+  margin-right: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.categories h3:hover {
+  font-weight: bold;
+  color: rgb(68, 28, 5);
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+.principal {
+  display: flex;
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 60px;
+}
+
+.marketplace {
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.marketplace h1 {
+  font-family: "Rubik Moonrocks", cursive;
+  font-size: 24px;
+  color: rgb(75, 31, 5);
+}
+
+.productsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 10px;
+}
+
+.productsList li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 15px;
+  width: 170px;
+  height: 262px;
+  border: solid rgba(240, 233, 233, 0.315) 2px;
+}
+
+.productsList li:hover {
+  border: 2px solid rgba(165, 87, 42, 0.904);
+  transition: 0.8s;
+}
+
+.productsList figure {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(240, 233, 233, 0.315);
+  width: 170px;
+  height: 100px;
+}
+
+.productsList img {
+  width: 100px;
+  height: 100px;
+}
+
+.productsList h2 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.productsList h3 {
+  font-size: 12px;
+}
+
+.productsList h4 {
+  font-size: 10px;
+  background-color: rgb(248, 205, 126);
+  border-radius: 7px;
+  color: white;
+  padding: 2px;
+}
+
+.productsList p {
+  font-size: 12px;
+}
+
+.productsList span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.productsList h3:hover {
+  color: blueviolet;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.lateral {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 250px;
+  max-height: 100%;
+}
+
+fieldset input {
+  border-radius: 10px;
+  border: 2px solid rgb(235, 233, 233);
+  position: absolute;
+  top: 95px;
+  right: 100px;
+}
+
+fieldset img {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 95px;
+  right: 100px;
+  background-color: rgb(235, 233, 233);
+  border-radius: 10px;
+}
+
+fieldset img:hover {
+  cursor: pointer;
+}
+
+.shop-cart {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  background-color: rgba(240, 233, 233, 0.315);
+  position: absolute;
+  top: 150px;
+  max-height: 400px;
+  right: 80px;
+}
+.shop-cart h3 {
+  font-family: "Rubik Moonrocks", cursive;
+  text-align: center;
+  color: white;
+  background-color: rgba(165, 87, 42, 0.904);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.empty h4 {
+  font-size: 14px;
+  text-align: center;
+  color: black;
+  padding: 10px;
+}
+
+.empty span {
+  font-size: 12px;
+  text-align: center;
+  color: gray;
+}
+
+.no-empty {
+  display: none;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.shop-list li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 2px;
+}
+
+.shop-list h4 {
+  font-size: 16px;
+  text-align: center;
+  color: black;
+}
+
+.shop-list span {
+  font-size: 12px;
+  text-align: center;
+  color: gray;
+}
+
+.shop-list div {
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  color: gray;
+}
+
+.shop-list h4 {
+  font-size: 10px;
+}
+.shop-list img {
+  width: 20px;
+  height: 20px;
+}
+
+.shop-list span {
+  font-size: 10px;
+}
+
+.shop-list h5 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(245, 111, 111);
+  font-size: 8px;
+  color: white;
+  border-radius: 5px;
+}
+
+.shop-list h5:hover {
+  cursor: pointer;
+}
+
+.shop-list {
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    .material-symbols-outlined {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+}
+
+.total {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+  background-color: rgba(165, 87, 42, 0.904);
+}
+
+.total li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total h3 {
+  font-size: 14px;
+  font-family: "Rubik Moonrocks", cursive;
+  color: white;
+}
+
+.total span {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+  color: black;
+  font-family: "Rubik Moonrocks", cursive;
+}
