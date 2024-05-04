@@ -28,7 +28,7 @@ const initializeGlobalVariables = () => {
   };
 };
 
-export const {
+const {
   marketplaceHtml,
   homeHtml,
   allHtml,
@@ -38,7 +38,7 @@ export const {
   productsListHtml,
 } = initializeDOMElements();
 
-export let { globalProducts } = initializeGlobalVariables();
+let { globalProducts } = initializeGlobalVariables();
 
 const setupStaticHTML = () => {
   marketplaceHtml.innerHTML = "";
@@ -73,8 +73,8 @@ const setDinamicHTML = (type) => {
   handleProducts();
 };
 
-const handleProducts = () => {
-  getProducts()
+const handleProducts = (type, filter) => {
+  getProducts(type, filter)
     .then((response) => {
       const productsData = response.data.data;
       createProductsHTML(productsData);
@@ -89,37 +89,35 @@ const createProductsHTML = (productsData) => {
   productsListHtml.innerHTML = "";
 
   productsData.forEach((currentProduct) => {
-    if (currentProduct.price <= 300) {
-      const itemListHtml = document.createElement("li");
-      const figureHtml = document.createElement("figure");
-      const imageHtml = document.createElement("img");
-      const categoryHtml = document.createElement("h4");
-      const productHtml = document.createElement("h2");
-      const descriptionHtml = document.createElement("p");
-      const priceHtml = document.createElement("span");
-      const addToCartHtml = document.createElement("h3");
+    const itemListHtml = document.createElement("li");
+    const figureHtml = document.createElement("figure");
+    const imageHtml = document.createElement("img");
+    const categoryHtml = document.createElement("h4");
+    const productHtml = document.createElement("h2");
+    const descriptionHtml = document.createElement("p");
+    const priceHtml = document.createElement("span");
+    const addToCartHtml = document.createElement("h3");
 
-      itemListHtml.id = currentProduct._id;
-      imageHtml.src = currentProduct.path;
-      addToCartHtml.id = currentProduct._id;
-      categoryHtml.innerText = currentProduct.category;
-      productHtml.innerText = currentProduct.name;
-      descriptionHtml.innerText = currentProduct.description;
-      priceHtml.innerText =
-        "R$ " + currentProduct.price.toFixed(2).replace(".", ",") + "/m²";
-      addToCartHtml.innerText = "Adicionar no carrinho";
+    itemListHtml.id = currentProduct._id;
+    imageHtml.src = currentProduct.path;
+    addToCartHtml.id = currentProduct._id;
+    categoryHtml.innerText = currentProduct.category;
+    productHtml.innerText = currentProduct.name;
+    descriptionHtml.innerText = currentProduct.description;
+    priceHtml.innerText =
+      "R$ " + currentProduct.price.toFixed(2).replace(".", ",") + "/m²";
+    addToCartHtml.innerText = "Adicionar no carrinho";
 
-      productsListHtml.append(itemListHtml);
-      itemListHtml.append(
-        figureHtml,
-        categoryHtml,
-        productHtml,
-        descriptionHtml,
-        priceHtml,
-        addToCartHtml
-      );
-      figureHtml.append(imageHtml);
-    }
+    productsListHtml.append(itemListHtml);
+    itemListHtml.append(
+      figureHtml,
+      categoryHtml,
+      productHtml,
+      descriptionHtml,
+      priceHtml,
+      addToCartHtml
+    );
+    figureHtml.append(imageHtml);
   });
 };
 
@@ -132,6 +130,8 @@ othersHtml.addEventListener("click", () => setHTMLStructure("others"));
 
 // Initial setup
 setupStaticHTML("initial");
+
+export { marketplaceHtml, handleProducts, globalProducts };
 
 // const botaoBusca = document.querySelector(".lupa");
 // const palavraBusca = document.querySelector(".inputBusca");
