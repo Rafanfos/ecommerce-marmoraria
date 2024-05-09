@@ -17,7 +17,7 @@ const initializeDOMElements = () => {
 const { allHtml, marblesHtml, granitesHtml, othersHtml } =
   initializeDOMElements();
 
-allHtml.addEventListener("click", () => setDinamicHTML());
+allHtml.addEventListener("click", () => setDinamicHTML("all"));
 marblesHtml.addEventListener("click", () =>
   setDinamicHTML("marbles", "Mármores")
 );

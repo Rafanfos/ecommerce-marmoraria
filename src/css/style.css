@@ -6,40 +6,39 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   gap: 40px;
-}
 
-header {
-  top: 0px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  box-shadow: 0px 4px 20px -10px rgba(0, 0, 0, 0.25);
-}
+  header {
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 4px 20px -10px rgba(0, 0, 0, 0.25);
+    padding: 10px 80px;
 
-header h2 {
-  margin-left: 80px;
-  font-family: "Rubik Moonrocks", cursive;
-  color: rgba(165, 87, 42, 0.904);
-  font-size: 24px;
-}
+    h2 {
+      font-family: "Rubik Moonrocks", cursive;
+      color: rgba(165, 87, 42, 0.904);
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-header h2:hover {
-  cursor: pointer;
-}
+    .categories {
+      color: rgb(165, 87, 42);
+      margin-right: 80px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
 
-.categories {
-  color: rgb(165, 87, 42);
-  margin-right: 80px;
-  display: flex;
-  justify-content: space-evenly;
-  gap: 10px;
-}
+      :hover {
+        color: rgb(68, 28, 5);
+        cursor: pointer;
+        transition: 0.8s;
+      }
+    }
+  }
 
-.categories h3:hover {
-  font-weight: bold;
-  color: rgb(68, 28, 5);
-  cursor: pointer;
-  transition: 0.8s;
+  main {
+    padding: 0px 80px;
+  }
 }
 
 .principal {
