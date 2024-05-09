@@ -39,7 +39,7 @@ let { sum, isInitial, shopListArr } = initializeGlobalVariables();
 const addToCart = (event) => {
   const addCartHtml = event.target;
 
-  if (addCartHtml.tagName === "H3") {
+  if (addCartHtml.tagName === "BUTTON") {
     verifyCartProduct(addCartHtml, true);
 
     if (isInitial) {

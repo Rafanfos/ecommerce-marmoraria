@@ -38,139 +38,167 @@ body {
 
   main {
     padding: 0px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    h1 {
+      font-family: "Rubik Moonrocks", cursive;
+      font-size: 24px;
+      color: rgb(75, 31, 5);
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+
+      .marketplace {
+        max-width: 75%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .products-list {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 15px;
+
+          li {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 15px;
+            width: 170px;
+            height: 262px;
+            border: solid rgba(240, 233, 233, 0.315) 2px;
+            border-radius: 8px;
+
+            figure {
+              display: flex;
+              justify-content: center;
+              background-color: rgba(240, 233, 233, 0.315);
+              width: 170px;
+              height: 100px;
+
+              img {
+                width: 100px;
+                height: 100px;
+              }
+            }
+
+            .card-text {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              padding: 10px;
+
+              h2 {
+                font-size: 12px;
+                font-weight: bold;
+              }
+
+              h3 {
+                font-size: 12px;
+              }
+
+              .category-tag {
+                font-size: 10px;
+                background-color: rgb(248, 205, 126);
+                border-radius: 7px;
+                color: white;
+                padding: 2px;
+                max-width: 60px;
+                text-align: center;
+              }
+
+              p {
+                font-size: 10px;
+              }
+
+              button {
+                background-color: rgb(75, 31, 5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                cursor: pointer;
+                border: none;
+                border-radius: 8px;
+
+                &:hover {
+                  background-color: rgba(95, 50, 25, 0.904);
+                  transition: 0.5s;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      aside {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 250px;
+        max-height: 100%;
+
+        form {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 185px;
+
+          input {
+            border-radius: 10px;
+            border: 2px solid rgb(235, 233, 233);
+            width: 170px;
+            padding: 5px;
+            width: 100%;
+          }
+
+          .search {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            right: 5%;
+            background-color: rgb(235, 233, 233);
+            border-radius: 10px;
+            cursor: pointer;
+          }
+        }
+
+        .shop-cart {
+          display: flex;
+          flex-direction: column;
+          width: 220px;
+          background-color: rgba(240, 233, 233, 0.315);
+          top: 150px;
+          max-height: 400px;
+          right: 80px;
+        }
+      }
+    }
   }
 }
 
-.principal {
-  display: flex;
-  gap: 20px;
-  max-width: 100%;
-  margin: 0 60px;
-}
-
-.marketplace {
-  max-width: 75%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.marketplace h1 {
-  font-family: "Rubik Moonrocks", cursive;
-  font-size: 24px;
-  color: rgb(75, 31, 5);
-}
-
-.productsList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  margin: 10px;
-}
-
-.productsList li {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 15px;
-  width: 170px;
-  height: 262px;
-  border: solid rgba(240, 233, 233, 0.315) 2px;
-}
-
-.productsList li:hover {
-  border: 2px solid rgba(165, 87, 42, 0.904);
-  transition: 0.8s;
-}
-
-.productsList figure {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(240, 233, 233, 0.315);
-  width: 170px;
-  height: 100px;
-}
-
-.productsList img {
-  width: 100px;
-  height: 100px;
-}
-
-.productsList h2 {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.productsList h3 {
-  font-size: 12px;
-}
-
-.productsList h4 {
-  font-size: 10px;
-  background-color: rgb(248, 205, 126);
-  border-radius: 7px;
-  color: white;
-  padding: 2px;
-}
-
-.productsList p {
-  font-size: 12px;
-}
-
-.productsList span {
+.products-list span {
   font-size: 12px;
   font-weight: bold;
 }
 
-.productsList h3:hover {
+.products-list h3:hover {
   color: blueviolet;
   cursor: pointer;
   text-decoration: underline;
 }
-.lateral {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  width: 250px;
-  max-height: 100%;
-}
 
-fieldset input {
-  border-radius: 10px;
-  border: 2px solid rgb(235, 233, 233);
-  position: absolute;
-  top: 95px;
-  right: 100px;
-}
-
-fieldset img {
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  top: 95px;
-  right: 100px;
-  background-color: rgb(235, 233, 233);
-  border-radius: 10px;
-}
-
-fieldset img:hover {
-  cursor: pointer;
-}
-
-.shop-cart {
-  display: flex;
-  flex-direction: column;
-  width: 220px;
-  background-color: rgba(240, 233, 233, 0.315);
-  position: absolute;
-  top: 150px;
-  max-height: 400px;
-  right: 80px;
-}
 .shop-cart h3 {
   font-family: "Rubik Moonrocks", cursive;
   text-align: center;

@@ -32,12 +32,8 @@ let { globalProducts } = initializeGlobalVariables();
 
 const setupStaticHTML = () => {
   marketplaceHtml.innerHTML = "";
-  productsListHtml.classList.add("productsList");
+  productsListHtml.classList.add("products-list");
   marketplaceHtml.append(productsListHtml);
-  marketplaceHtml.insertAdjacentHTML(
-    "afterbegin",
-    "<h1>Os melhores preços você só encontra aqui!!</h1>"
-  );
 
   setDinamicHTML("initial");
 };
@@ -74,32 +70,40 @@ const createProductsHTML = (productsData) => {
     const itemListHtml = document.createElement("li");
     const figureHtml = document.createElement("figure");
     const imageHtml = document.createElement("img");
-    const categoryHtml = document.createElement("h4");
+    const cardTextHtml = document.createElement("div");
+    const categoryTagHtml = document.createElement("div");
+    const categoryTextHtml = document.createElement("span");
     const productHtml = document.createElement("h2");
     const descriptionHtml = document.createElement("p");
     const priceHtml = document.createElement("span");
-    const addToCartHtml = document.createElement("h3");
+    const addToCartButtonHtml = document.createElement("button");
+    const addToCartHtml = document.createElement("span");
 
     itemListHtml.id = currentProduct._id;
     imageHtml.src = currentProduct.path;
-    addToCartHtml.id = currentProduct._id;
-    categoryHtml.innerText = currentProduct.category;
+    addToCartButtonHtml.id = currentProduct._id;
+
+    categoryTextHtml.innerText = currentProduct.category;
     productHtml.innerText = currentProduct.name;
     descriptionHtml.innerText = currentProduct.description;
     priceHtml.innerText =
       "R$ " + currentProduct.price.toFixed(2).replace(".", ",") + "/m²";
-    addToCartHtml.innerText = "Adicionar no carrinho";
+    addToCartButtonHtml.innerText = "Adicionar no carrinho";
 
-    productsListHtml.append(itemListHtml);
-    itemListHtml.append(
-      figureHtml,
-      categoryHtml,
+    cardTextHtml.classList.add("card-text");
+    categoryTagHtml.classList.add("category-tag");
+
+    figureHtml.append(imageHtml);
+    categoryTagHtml.append(categoryTextHtml);
+    cardTextHtml.append(
+      categoryTagHtml,
       productHtml,
       descriptionHtml,
       priceHtml,
-      addToCartHtml
+      addToCartButtonHtml
     );
-    figureHtml.append(imageHtml);
+    itemListHtml.append(figureHtml, cardTextHtml);
+    productsListHtml.append(itemListHtml);
   });
 };
 
