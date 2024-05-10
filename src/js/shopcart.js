@@ -46,7 +46,7 @@ const addToCart = (event) => {
       return createCartWithProducts();
     }
 
-    updateKart();
+    updateCart();
   }
 };
 
@@ -55,14 +55,20 @@ const verifyCartProduct = (cartProductHtml, isAdd) => {
     ({ _id }) => _id === cartProductHtml.id
   );
 
+  if (!isAdd && currentCartProduct.qtd === 1) {
+    return deleteCartProduct(cartProductHtml);
+  }
+
   const repeatedCartProduct = shopListArr.find(
     ({ _id }) => _id === currentCartProduct._id
   );
 
   if (repeatedCartProduct) {
-    updateCartProduct(currentCartProduct, isAdd, cartProductHtml);
-  } else {
-    createCartProduct(currentCartProduct);
+    return updateCartProduct(currentCartProduct, isAdd, cartProductHtml);
+  }
+
+  if (isAdd) {
+    return createCartProduct(currentCartProduct);
   }
 };
 
@@ -75,20 +81,25 @@ const createCartProduct = (cartProduct) => {
   const qtdHtml = document.createElement("div");
   const qtdTextHtml = document.createElement("span");
   const qtdValueHtml = document.createElement("span");
-  const productHtml = document.createElement("h4");
+  const productHtml = document.createElement("span");
   const priceHtml = document.createElement("span");
   const trashHtml = document.createElement("i");
 
-  imageHtml.src = cartProduct.path;
-  qtdTextHtml.innerText = qtdValueHtml.innerText = "Qtd: ";
-  qtdValueHtml.innerText = cartProduct.qtd;
   cartItemHtml.id = `cart-item${cartProduct._id}`;
   trashHtml.id = cartProduct._id;
+
+  imageHtml.src = cartProduct.path;
+
+  qtdTextHtml.innerText = qtdValueHtml.innerText = "Qtd: ";
+  qtdValueHtml.innerText = cartProduct.qtd;
   productHtml.innerText = cartProduct.name;
   priceHtml.innerText =
     "R$ " + cartProduct.price.toFixed(2).replace(".", ",") + "/m²";
-  trashHtml.classList.add("material-symbols-outlined");
   trashHtml.innerText = "delete";
+
+  trashHtml.classList.add("material-symbols-outlined");
+  productHtml.classList.add("product-name");
+  priceHtml.classList.add("product-price");
 
   qtdHtml.append(qtdTextHtml, qtdValueHtml);
   shopListHtml.append(cartItemHtml);
@@ -102,10 +113,6 @@ const updateCartProduct = (cartProduct, isAdd, cartProductHtml) => {
     cartProduct.qtd++;
   } else {
     cartProduct.qtd--;
-  }
-
-  if (cartProduct.qtd === 0) {
-    return deleteCartProduct(cartProductHtml);
   }
 
   const cartProductItemHtml = document.getElementById(
@@ -129,19 +136,19 @@ const createCartWithProducts = () => {
   totalValueHtml.classList.add("total-value");
   qtdValueHtml.classList.add("qtd-value");
 
-  totalTitleHtml.innerText = "Total";
-  qtdTitleHtml.innerText = "Quantidade";
+  totalTitleHtml.innerText = "Total:";
+  qtdTitleHtml.innerText = "Quantidade:";
 
   cartTotalHtml.append(totalTitleHtml, totalValueHtml);
   cartQtdHtml.append(qtdTitleHtml, qtdValueHtml);
-  totalHtml.append(cartTotalHtml, cartQtdHtml);
+  totalHtml.append(cartQtdHtml, cartTotalHtml);
 
-  updateKart();
+  updateCart();
 
   isInitial = false;
 };
 
-const updateKart = () => {
+const updateCart = () => {
   sum = shopListArr.reduce((acc, { price, qtd }) => acc + qtd * price, 0);
   const qtdTotal = shopListArr.reduce((acc, { qtd }) => acc + qtd, 0);
 
@@ -154,15 +161,13 @@ const updateKart = () => {
   qtdValueHtml.innerText = qtdTotal;
 };
 
-marketplaceHtml.addEventListener("click", addToCart);
-
 const removeProduct = (event) => {
   const remCartHtml = event.target;
 
-  if (remCartHtml.tagName.toLowerCase() == "i") {
-    verifyCartProduct(remCartHtml);
+  if (remCartHtml.tagName === "I") {
+    verifyCartProduct(remCartHtml, false);
 
-    updateKart();
+    updateCart();
   }
 };
 
@@ -180,11 +185,12 @@ const deleteCartProduct = (cartProductHtml) => {
   }
 };
 
-shopListHtml.addEventListener("click", removeProduct);
-
 const toggleEmptyNoEmpty = (toShow, toHide) => {
   toShow.style.display = "flex";
   toShow.style.flexDirection = "column";
 
   toHide.style.display = "none";
 };
+
+marketplaceHtml.addEventListener("click", addToCart);
+shopListHtml.addEventListener("click", removeProduct);
