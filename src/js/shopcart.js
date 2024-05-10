@@ -46,7 +46,7 @@ const addToCart = (event) => {
       return createCartWithProducts();
     }
 
-    updateKart();
+    updateCart();
   }
 };
 
@@ -55,14 +55,20 @@ const verifyCartProduct = (cartProductHtml, isAdd) => {
     ({ _id }) => _id === cartProductHtml.id
   );
 
+  if (!isAdd && currentCartProduct.qtd === 1) {
+    return deleteCartProduct(cartProductHtml);
+  }
+
   const repeatedCartProduct = shopListArr.find(
     ({ _id }) => _id === currentCartProduct._id
   );
 
   if (repeatedCartProduct) {
-    updateCartProduct(currentCartProduct, isAdd, cartProductHtml);
-  } else {
-    createCartProduct(currentCartProduct);
+    return updateCartProduct(currentCartProduct, isAdd, cartProductHtml);
+  }
+
+  if (isAdd) {
+    return createCartProduct(currentCartProduct);
   }
 };
 
@@ -109,10 +115,6 @@ const updateCartProduct = (cartProduct, isAdd, cartProductHtml) => {
     cartProduct.qtd--;
   }
 
-  if (cartProduct.qtd === 0) {
-    return deleteCartProduct(cartProductHtml);
-  }
-
   const cartProductItemHtml = document.getElementById(
     `cart-item${cartProduct._id}`
   );
@@ -141,12 +143,12 @@ const createCartWithProducts = () => {
   cartQtdHtml.append(qtdTitleHtml, qtdValueHtml);
   totalHtml.append(cartQtdHtml, cartTotalHtml);
 
-  updateKart();
+  updateCart();
 
   isInitial = false;
 };
 
-const updateKart = () => {
+const updateCart = () => {
   sum = shopListArr.reduce((acc, { price, qtd }) => acc + qtd * price, 0);
   const qtdTotal = shopListArr.reduce((acc, { qtd }) => acc + qtd, 0);
 
@@ -159,15 +161,13 @@ const updateKart = () => {
   qtdValueHtml.innerText = qtdTotal;
 };
 
-marketplaceHtml.addEventListener("click", addToCart);
-
 const removeProduct = (event) => {
   const remCartHtml = event.target;
 
-  if (remCartHtml.tagName.toLowerCase() == "i") {
-    verifyCartProduct(remCartHtml);
+  if (remCartHtml.tagName === "I") {
+    verifyCartProduct(remCartHtml, false);
 
-    updateKart();
+    updateCart();
   }
 };
 
@@ -185,11 +185,12 @@ const deleteCartProduct = (cartProductHtml) => {
   }
 };
 
-shopListHtml.addEventListener("click", removeProduct);
-
 const toggleEmptyNoEmpty = (toShow, toHide) => {
   toShow.style.display = "flex";
   toShow.style.flexDirection = "column";
 
   toHide.style.display = "none";
 };
+
+marketplaceHtml.addEventListener("click", addToCart);
+shopListHtml.addEventListener("click", removeProduct);
