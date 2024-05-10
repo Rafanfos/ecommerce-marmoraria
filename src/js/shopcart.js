@@ -75,20 +75,25 @@ const createCartProduct = (cartProduct) => {
   const qtdHtml = document.createElement("div");
   const qtdTextHtml = document.createElement("span");
   const qtdValueHtml = document.createElement("span");
-  const productHtml = document.createElement("h4");
+  const productHtml = document.createElement("span");
   const priceHtml = document.createElement("span");
   const trashHtml = document.createElement("i");
 
-  imageHtml.src = cartProduct.path;
-  qtdTextHtml.innerText = qtdValueHtml.innerText = "Qtd: ";
-  qtdValueHtml.innerText = cartProduct.qtd;
   cartItemHtml.id = `cart-item${cartProduct._id}`;
   trashHtml.id = cartProduct._id;
+
+  imageHtml.src = cartProduct.path;
+
+  qtdTextHtml.innerText = qtdValueHtml.innerText = "Qtd: ";
+  qtdValueHtml.innerText = cartProduct.qtd;
   productHtml.innerText = cartProduct.name;
   priceHtml.innerText =
     "R$ " + cartProduct.price.toFixed(2).replace(".", ",") + "/m²";
-  trashHtml.classList.add("material-symbols-outlined");
   trashHtml.innerText = "delete";
+
+  trashHtml.classList.add("material-symbols-outlined");
+  productHtml.classList.add("product-name");
+  priceHtml.classList.add("product-price");
 
   qtdHtml.append(qtdTextHtml, qtdValueHtml);
   shopListHtml.append(cartItemHtml);
@@ -129,12 +134,12 @@ const createCartWithProducts = () => {
   totalValueHtml.classList.add("total-value");
   qtdValueHtml.classList.add("qtd-value");
 
-  totalTitleHtml.innerText = "Total";
-  qtdTitleHtml.innerText = "Quantidade";
+  totalTitleHtml.innerText = "Total:";
+  qtdTitleHtml.innerText = "Quantidade:";
 
   cartTotalHtml.append(totalTitleHtml, totalValueHtml);
   cartQtdHtml.append(qtdTitleHtml, qtdValueHtml);
-  totalHtml.append(cartTotalHtml, cartQtdHtml);
+  totalHtml.append(cartQtdHtml, cartTotalHtml);
 
   updateKart();
 
