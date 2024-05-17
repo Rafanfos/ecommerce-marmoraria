@@ -1,5 +1,5 @@
 const getProducts = (queryType, queryValue) => {
-  let url = "http://localhost:3001/api/products/";
+  let url = "https://ecommerce-marmoraria-api.vercel.app/api/products";
 
   if (
     (queryType === "category" && queryValue) ||
